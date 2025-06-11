@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Farmácias</title>
+    <link rel="stylesheet" href="inicio.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="logo-container">
+                <div class="logo">
+                    <div class="icon">
+                        <img src="icones/Logo.png" alt="imagem-logo" width="50" height="50">
+                    </div>
+                    <div class="logo-text">
+                        <h1>Sistema</h1>
+                        <h1>Farmacias</h1>
+                    </div>
+                </div>
+            </div>
+            <h2 class="section-title">Produtos</h2>
+            <nav class="menu">
+                <button onclick="window.location.href='inicio.html'">Inicio</button>
+                <button onclick="window.location.href='vendas.html'">Vendas</button>
+                <button class="active" onclick="window.location.href='produto.html'">Produtos</button>
+                <button onclick="window.location.href='funcionario.html'">Funcionarios</button>
+                <button onclick="window.location.href='trasportadora.html'">Transportadora</button>
+                <button onclick="window.location.href='login.html'">Logout</button>
+            </nav>
+        </aside>
+        <main class="main-content">
+            <div class="actions">
+                <button class="icon-btn">🔍</button>
+                <button id="abrir-modal-cadastro" class="icon-btn">+</button>
+                <button id="abrir-modal-excluir" class="icon-btn">−</button>
+
+            </div>
+
+            <!-- Modal: Cadastro de Produto -->
+            <div id="modal-cadastro" class="modal hidden">
+                <div class="modal-content">
+                    <h2>Cadastrar Produto</h2>
+                    <!-- Campo para digitar o nome do produto -->
+                    <label for="produto-nome">Nome do Produto:</label>
+                    <input type="text" id="produto-nome" placeholder="Digite o nome">
+
+                    <!-- Campo para digitar a quantidade do produto -->
+                    <label for="produto-quantidade">Quantidade:</label>
+                    <input type="number" id="produto-quantidade" placeholder="Digite a quantidade">
+
+                    <div class="modal-actions">
+                        <!-- Botão que dispara o cadastro do produto -->
+                        <button id="cadastrar-btn">Cadastrar</button>
+                        <!-- Botão para fechar o modal -->
+                        <button class="fechar-modal">Fechar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal: Exclusão de Produto -->
+            <div id="modal-excluir" class="modal hidden">
+                <div class="modal-content">
+                    <h2>Excluir Produto</h2>
+                    <p>Tem certeza que deseja excluir este produto?</p>
+
+                    <!-- Campo para digitar o nome do produto -->
+                    <label for="produto-nome">Nome do Produto:</label>
+                    <input type="text" id="produto-nome" placeholder="Digite o nome">
+
+                    <div class="modal-actions">
+                        <!-- Botão que confirma a exclusão do produto -->
+                        <button id="confirmar-exclusao">Excluir</button>
+                        <!-- Botão para cancelar/fechar o modal -->
+                        <button class="fechar-modal">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+
+
+        </main>
+    </div>
+    <script>
+        // Ao clicar no botão "+", mostra o modal de cadastro
+        document.getElementById("abrir-modal-cadastro").addEventListener("click", () => {
+            document.getElementById("modal-cadastro").classList.remove("hidden");
+        });
+
+        // Ao clicar no botão "−", mostra o modal de exclusão
+        document.getElementById("abrir-modal-excluir").addEventListener("click", () => {
+            document.getElementById("modal-excluir").classList.remove("hidden");
+        });
+
+        // Adiciona o comportamento de fechar modais aos botões com a classe .fechar-modal
+        document.querySelectorAll(".fechar-modal").forEach(btn => {
+            btn.addEventListener("click", () => {
+                // Oculta todos os modais ativos, adicionando a classe 'hidden'
+                document.querySelectorAll(".modal").forEach(modal => modal.classList.add("hidden"));
+            });
+        });
+
+        // Simula o cadastro de um produto
+        document.getElementById("cadastrar-btn").addEventListener("click", () => {
+            const nome = document.getElementById("produto-nome").value;
+            const quantidade = document.getElementById("produto-quantidade").value;
+
+            // Apenas imprime no console (poderia ser enviado para backend futuramente)
+            console.log(`Produto cadastrado: ${nome} (${quantidade})`);
+
+            // Fecha o modal de cadastro
+            document.getElementById("modal-cadastro").classList.add("hidden");
+        });
+
+        // Simula a exclusão de um produto
+        document.getElementById("confirmar-exclusao").addEventListener("click", () => {
+            // Apenas imprime no console (simulação)
+            console.log("Produto excluído");
+
+            // Fecha o modal de exclusão
+            document.getElementById("modal-excluir").classList.add("hidden");
+        });
+
+    </script>
+
+</body>
+
+</html>

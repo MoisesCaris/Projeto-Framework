@@ -1,0 +1,191 @@
+/* styles.css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body {
+    background-color: #2e2e2e;
+}
+
+.app-container {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+}
+
+.sidebar {
+    width: 270px;
+    background-color: #2ce89c;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 0;
+    box-shadow: 2px 0 4px rgba(0, 0, 0, 0.2);
+}
+
+.logo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px;
+}
+
+.icon {
+    width: 48px;
+    height: 48px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    margin-right: 10px;
+}
+
+.logo-text h1 {
+    line-height: 1;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.section-title {
+    margin: 20px 0;
+    color: white;
+    font-size: 24px;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    padding: 0 20px;
+}
+
+.menu button {
+    padding: 12px 0;
+    background-color: #28ce88;
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.menu button.active {
+    background-color: #2a7f64;
+    box-shadow: none;
+}
+
+.menu button:hover {
+    background-color: #26b377;
+}
+
+.main-content {
+    flex: 1;
+    background-color: #edfdf7;
+    padding: 20px;
+    position: relative;
+}
+
+.actions {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.icon-btn {
+    width: 45px;
+    height: 45px;
+    font-size: 24px;
+    color: white;
+    background-color: #28ce88;
+    border: none;
+    border-radius: 10px;
+    transition: background 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+
+}
+
+.logo-container {
+    width: 100%;
+    background-color: #2ce89c;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+    z-index: 1;
+    position: relative;
+}
+
+.logo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+/* Modal geral */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+/* Oculta o modal por padrão */
+.hidden {
+    display: none;
+}
+
+/* Conteúdo do modal */
+.modal-content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    width: 300px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.modal-content input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: space-between;
+}
+
+.modal-actions button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    background-color: #28ce88;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.modal-actions button:hover {
+    background-color: #2a7f64;
+}
