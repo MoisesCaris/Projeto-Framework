@@ -1,12 +1,35 @@
 package com.projeto.projetofarmaciatcsframework.service;
 
-import com.projeto.projetofarmaciatcsframework.repository.FuncionarioRepository;
+import com.projeto.projetofarmaciatcsframework.DTO.FarmaciaRegistroDTO;
+import com.projeto.projetofarmaciatcsframework.mappers.FarmaciaMapper;
+import com.projeto.projetofarmaciatcsframework.mappers.UsuarioMapper;
+import com.projeto.projetofarmaciatcsframework.models.FarmaciaModel;
+import com.projeto.projetofarmaciatcsframework.repository.FarmaciaRepository;
+import com.projeto.projetofarmaciatcsframework.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class FarmaciaService {
 
     @Autowired
-    private FuncionarioRepository funcionarioRepository;
+    private FarmaciaRepository farmaciaRepository;
+
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+
+    @Autowired
+    private UsuarioService usuarioService;
+
+    @Autowired
+    private FarmaciaMapper mapper;
+
+
+    public void registrarFarmacia(FarmaciaRegistroDTO data, Integer userId) {
+        FarmaciaModel farmaciaModel = mapper.registroFarmacia(data);
+        this.farmaciaRepository.save(farmaciaModel);
+        usuarioService.setID(userId, farmaciaModel);
+    }
 }
