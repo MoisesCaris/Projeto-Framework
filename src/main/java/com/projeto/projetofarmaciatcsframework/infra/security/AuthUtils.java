@@ -6,11 +6,23 @@ import org.springframework.security.core.Authentication;
 
 public class AuthUtils {
 
-    public static Integer getCurrentUserId() {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    public static UsuarioModel getCurrentUser() {
+        var auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth != null && auth.getPrincipal() instanceof UsuarioModel user) {
-            return user.getId(); // Retorna o ID do usuário logado
+            return user;
         }
         return null;
+    }
+
+    public static Integer getCurrentUserId() {
+        var user = getCurrentUser();
+        return user != null ? user.getId() : null;
+    }
+
+    public static Integer getCurrentUserFarmaciaId() {
+        UsuarioModel usuario = getCurrentUser();
+        return (usuario != null && usuario.getFarmaciaID() != null)
+                ? usuario.getFarmaciaID().getIdFarmacia()
+                : null;
     }
 }
