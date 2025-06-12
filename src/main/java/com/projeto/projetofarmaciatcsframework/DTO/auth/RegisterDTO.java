@@ -1,4 +1,4 @@
-package com.projeto.projetofarmaciatcsframework.DTO;
+package com.projeto.projetofarmaciatcsframework.DTO.auth;
 
 import com.projeto.projetofarmaciatcsframework.models.UsuarioAcesso;
 

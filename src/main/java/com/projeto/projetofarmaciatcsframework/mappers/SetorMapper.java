@@ -1,6 +1,6 @@
 package com.projeto.projetofarmaciatcsframework.mappers;
 
-import com.projeto.projetofarmaciatcsframework.DTO.RegistroSetorDTO;
+import com.projeto.projetofarmaciatcsframework.DTO.setor.RegistroSetorDTO;
 import com.projeto.projetofarmaciatcsframework.models.FarmaciaModel;
 import com.projeto.projetofarmaciatcsframework.models.SetorModel;
 import org.mapstruct.Mapper;

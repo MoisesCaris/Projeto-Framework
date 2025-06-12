@@ -1,6 +1,6 @@
 package com.projeto.projetofarmaciatcsframework.controller;
 
-import com.projeto.projetofarmaciatcsframework.DTO.RegistroSetorDTO;
+import com.projeto.projetofarmaciatcsframework.DTO.setor.RegistroSetorDTO;
 import com.projeto.projetofarmaciatcsframework.service.SetorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.projeto.projetofarmaciatcsframework.infra.security.AuthUtils;

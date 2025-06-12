@@ -1,8 +1,8 @@
 package com.projeto.projetofarmaciatcsframework.controller;
 
-import com.projeto.projetofarmaciatcsframework.DTO.AuthenticationDTO;
-import com.projeto.projetofarmaciatcsframework.DTO.LoginResponseDTO;
-import com.projeto.projetofarmaciatcsframework.DTO.RegisterDTO;
+import com.projeto.projetofarmaciatcsframework.DTO.auth.AuthenticationDTO;
+import com.projeto.projetofarmaciatcsframework.DTO.auth.LoginResponseDTO;
+import com.projeto.projetofarmaciatcsframework.DTO.auth.RegisterDTO;
 import com.projeto.projetofarmaciatcsframework.infra.security.TokenService;
 import com.projeto.projetofarmaciatcsframework.models.UsuarioModel;
 import com.projeto.projetofarmaciatcsframework.repository.UsuarioRepository;

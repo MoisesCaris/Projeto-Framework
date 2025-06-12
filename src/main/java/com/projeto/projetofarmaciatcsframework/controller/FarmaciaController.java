@@ -1,6 +1,6 @@
 package com.projeto.projetofarmaciatcsframework.controller;
 
-import com.projeto.projetofarmaciatcsframework.DTO.FarmaciaRegistroDTO;
+import com.projeto.projetofarmaciatcsframework.DTO.farmacia.FarmaciaRegistroDTO;
 import com.projeto.projetofarmaciatcsframework.infra.security.AuthUtils;
 import com.projeto.projetofarmaciatcsframework.service.FarmaciaService;
 import org.springframework.beans.factory.annotation.Autowired;

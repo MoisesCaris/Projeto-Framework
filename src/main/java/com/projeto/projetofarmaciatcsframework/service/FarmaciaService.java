@@ -1,14 +1,12 @@
 package com.projeto.projetofarmaciatcsframework.service;
 
-import com.projeto.projetofarmaciatcsframework.DTO.FarmaciaRegistroDTO;
+import com.projeto.projetofarmaciatcsframework.DTO.farmacia.FarmaciaRegistroDTO;
 import com.projeto.projetofarmaciatcsframework.mappers.FarmaciaMapper;
 import com.projeto.projetofarmaciatcsframework.models.FarmaciaModel;
 import com.projeto.projetofarmaciatcsframework.repository.FarmaciaRepository;
 import com.projeto.projetofarmaciatcsframework.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 public class FarmaciaService {
