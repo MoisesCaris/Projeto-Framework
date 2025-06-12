@@ -2,7 +2,6 @@ package com.projeto.projetofarmaciatcsframework.service;
 
 import com.projeto.projetofarmaciatcsframework.DTO.FarmaciaRegistroDTO;
 import com.projeto.projetofarmaciatcsframework.mappers.FarmaciaMapper;
-import com.projeto.projetofarmaciatcsframework.mappers.UsuarioMapper;
 import com.projeto.projetofarmaciatcsframework.models.FarmaciaModel;
 import com.projeto.projetofarmaciatcsframework.repository.FarmaciaRepository;
 import com.projeto.projetofarmaciatcsframework.repository.UsuarioRepository;
