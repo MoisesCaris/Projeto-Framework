@@ -7,12 +7,12 @@ import com.projeto.projetofarmaciatcsframework.models.FuncionarioModel;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-@Mapper(componentModel = "spring")
-public interface ProdutosMapper {
-
-    @Mapping(target = "idVenda", ignore = true)
-    @Mapping(target = "idVendaProduto", ignore = true)
-    @Mapping(target = "idFuncionario", source = "funcionarioModel")
-    @Mapping(target = "farmacia", source = "farmaciaModel")
-    VendaModel registrarVenda(RegistroVendaDTO data, FarmaciaModel farmaciaModel, FuncionarioModel funcionarioModel);
-}
+//@Mapper(componentModel = "spring")
+//public interface ProdutosMapper {
+//
+////    @Mapping(target = "idVenda", ignore = true)
+////    @Mapping(target = "idVendaProduto", ignore = true)
+////    @Mapping(target = "idFuncionario", source = "funcionarioModel")
+////    @Mapping(target = "farmacia", source = "farmaciaModel")
+////    VendaModel registrarVenda(RegistroVendaDTO data, FarmaciaModel farmaciaModel, FuncionarioModel funcionarioModel);
+//}

@@ -14,6 +14,7 @@ public class ProdutosModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idproduto")
     private int idProduto;
 
     @Column(name = "nomeproduto", nullable = false)

@@ -14,7 +14,7 @@ public interface SetorMapper {
     @Mapping(target = "valeRefeicao", source = "data.valeRefeicao")
     @Mapping(target = "valeAlimentacao", source = "data.valeAlimentacao")
     @Mapping(target = "planoOdonto", source = "data.planoOdonto")
-    @Mapping(target = "valeTransporte", source = "data.valeTransporte")
+    @Mapping(target = "valeTransporte", source = "data.valeTransponte")
     @Mapping(target = "planoSaude", source = "data.planoSaude")
     @Mapping(target = "farmacia", source = "farmaciaModel")
     SetorModel registroSetor(RegistroSetorDTO data, FarmaciaModel farmaciaModel);
