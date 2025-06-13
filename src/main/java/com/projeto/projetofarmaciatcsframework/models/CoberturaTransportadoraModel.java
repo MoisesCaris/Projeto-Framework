@@ -23,7 +23,7 @@ public class CoberturaTransportadoraModel implements Serializable {
     @Column(name = "estado")
     private EstadoEnum estado;
 
-    // Relacionamento com transportadora
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idTransportadora", insertable = false, updatable = false)
     private TransportadoraModel  transportadora;
