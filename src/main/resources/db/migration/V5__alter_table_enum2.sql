@@ -1,0 +1,1 @@
+ALTER TABLE coberturatransportadora ALTER COLUMN estado TYPE VARCHAR(2);

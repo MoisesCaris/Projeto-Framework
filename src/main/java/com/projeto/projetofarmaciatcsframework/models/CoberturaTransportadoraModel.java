@@ -1,30 +1,24 @@
 package com.projeto.projetofarmaciatcsframework.models;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import java.io.Serializable;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
-@Table(name = "CoberturaTransportadora")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@IdClass(CoberturaTransportadoraId.class)
-public class CoberturaTransportadoraModel implements Serializable {
+@Table(name = "coberturatransportadora")
+@Getter
+@Setter
+public class CoberturaTransportadoraModel {
 
-    @Id
-    @Column(name = "idtransportadora")
-    private Integer idTransportadora;
-
-    @Id
-    @Enumerated(EnumType.STRING)
-    @Column(name = "estado")
-    private EstadoEnum estado;
-
+    @EmbeddedId
+    private CoberturaTransportadoraId id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idtransportadora", insertable = false, updatable = false)
-    private TransportadoraModel  transportadora;
+    @MapsId("transportadoraId")
+    @JoinColumn(name = "idtransportadora")
+    private TransportadoraModel transportadora;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "estado", insertable = false, updatable = false)
+    private EstadoEnum estado;
 }

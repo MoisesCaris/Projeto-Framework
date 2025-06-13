@@ -1,0 +1,1 @@
+ALTER TABLE funcionario ALTER COLUMN genero TYPE VARCHAR(50);

@@ -1,31 +1,26 @@
 package com.projeto.projetofarmaciatcsframework.models;
 
+import jakarta.persistence.Embeddable;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.io.Serializable;
-import java.util.Objects;
 
-@Data
+@Embeddable
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode
 public class CoberturaTransportadoraId implements Serializable {
 
-    private Integer idTransportadora;
+    private int transportadoraId;
+
+    @Enumerated(EnumType.STRING)
     private EstadoEnum estado;
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        CoberturaTransportadoraId that = (CoberturaTransportadoraId) o;
-        return Objects.equals(idTransportadora, that.idTransportadora) &&
-                Objects.equals(estado, that.estado);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(idTransportadora, estado);
-    }
 }
