@@ -16,16 +16,17 @@ public class VendaModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idvenda")
     private int idVenda;
 
     @ManyToOne
     @JoinColumn(name = "idfuncionario")
     private FuncionarioModel funcionario;
 
-    @Column(name = "dataVenda", nullable = false)
+    @Column(name = "datavenda", nullable = false)
     private LocalDate dataVenda;
 
-    @Column(name = "totalVenda", nullable = true)
+    @Column(name = "totalvenda", nullable = true)
     private double totalVenda;
 
     @ManyToOne
