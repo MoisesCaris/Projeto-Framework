@@ -18,26 +18,26 @@ import java.math.BigDecimal;
 public class VendaProdutosModel implements Serializable {
 
     @Id
-    @Column(name = "idVenda")
+    @Column(name = "idvenda")
     private Integer idVenda;
 
     @Id
-    @Column(name = "idProduto")
+    @Column(name = "idproduto")
     private Integer idProduto;
 
-    @Column(name = "qtdVendaProduto", nullable = false)
+    @Column(name = "qtdvendaproduto", nullable = false)
     @Min(value = 1, message = "Quantidade deve ser maior que 0")
     private Integer qtdVendaProduto;
 
-    @Column(name = "valorVendaProduto", nullable = false, precision = 10, scale = 2)
+    @Column(name = "valorvendaproduto", nullable = false, precision = 10, scale = 2)
     @DecimalMin(value = "0.0", inclusive = true, message = "Valor deve ser maior ou igual a 0")
     private BigDecimal valorVendaProduto;
 
     @ManyToOne
-    @JoinColumn(name = "idVenda", insertable = false, updatable = false)
+    @JoinColumn(name = "idvenda", insertable = false, updatable = false)
     private VendaModel venda;
 
     @ManyToOne
-    @JoinColumn(name = "idProduto", insertable = false, updatable = false)
+    @JoinColumn(name = "idproduto", insertable = false, updatable = false)
     private ProdutosModel produto;
 }

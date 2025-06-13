@@ -19,7 +19,7 @@ public class VendaModel {
     private int idVenda;
 
     @ManyToOne
-    @JoinColumn(name = "idFuncionario")
+    @JoinColumn(name = "idfuncionario")
     private FuncionarioModel funcionario;
 
     @Column(name = "dataVenda", nullable = false)
@@ -29,6 +29,6 @@ public class VendaModel {
     private double totalVenda;
 
     @ManyToOne
-    @JoinColumn(name = "idFarmacia")
+    @JoinColumn(name = "idfarmacia")
     private FarmaciaModel farmacia;
 }

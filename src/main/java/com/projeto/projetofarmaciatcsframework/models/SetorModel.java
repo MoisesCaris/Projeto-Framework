@@ -19,22 +19,22 @@ public class SetorModel {
     @Column(name = "nome", nullable = false)
     private String nome;
 
-    @Column(name = "valeRefeicao")
+    @Column(name = "valerefeicao")
     private double valeRefeicao;
 
-    @Column(name = "valeAlimentacao")
+    @Column(name = "valealimentacao")
     private double valeAlimentacao;
 
-    @Column(name = "planoSaude")
+    @Column(name = "planosaude")
     private double planoSaude;
 
-    @Column(name = "planoOdonto")
+    @Column(name = "planoodonto")
     private double planoOdonto;
 
-    @Column(name = "valeTransporte")
+    @Column(name = "valetransporte")
     private double valeTransporte;
 
     @ManyToOne
-    @JoinColumn(name = "idFarmacia")
+    @JoinColumn(name = "idfarmacia")
     private FarmaciaModel farmacia;
 }

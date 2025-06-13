@@ -20,6 +20,6 @@ public class CaixaModel {
     private double valor;
 
     @ManyToOne
-    @JoinColumn(name = "idFarmacia")
+    @JoinColumn(name = "idfarmacia")
     private FarmaciaModel farmacia;
 }

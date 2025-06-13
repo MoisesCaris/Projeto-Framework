@@ -19,16 +19,16 @@ public class CompraModel {
     private int idCompra;
 
     @ManyToOne
-    @JoinColumn(name = "idFuncionario")
+    @JoinColumn(name = "idfuncionario")
     private FuncionarioModel funcionario;
 
-    @Column(name = "dataCompra", nullable = false)
+    @Column(name = "datacompra", nullable = false)
     private LocalDate dataCompra;
 
-    @Column(name = "totalCompra", nullable = false)
+    @Column(name = "totalcompra", nullable = false)
     private double totalCompra;
 
     @ManyToOne
-    @JoinColumn(name = "idFarmacia")
+    @JoinColumn(name = "idfarmacia")
     private FarmaciaModel farmacia;
 }

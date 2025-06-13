@@ -18,7 +18,7 @@ public class TransportadoraModel implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idTransportadora")
+    @Column(name = "idtransportadora")
     private Integer idTransportadora;
 
     @Column(name = "nome", nullable = false, length = 150)

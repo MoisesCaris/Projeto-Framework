@@ -15,7 +15,7 @@ import java.io.Serializable;
 public class CoberturaTransportadoraModel implements Serializable {
 
     @Id
-    @Column(name = "idTransportadora")
+    @Column(name = "idtransportadora")
     private Integer idTransportadora;
 
     @Id
@@ -25,6 +25,6 @@ public class CoberturaTransportadoraModel implements Serializable {
 
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idTransportadora", insertable = false, updatable = false)
+    @JoinColumn(name = "idtransportadora", insertable = false, updatable = false)
     private TransportadoraModel  transportadora;
 }

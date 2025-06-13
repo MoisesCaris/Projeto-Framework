@@ -16,7 +16,7 @@ public class FuncionarioModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idFuncionario;
 
-    @Column(name = "nomeCompleto", nullable = false)
+    @Column(name = "nomecompleto", nullable = false)
     private String nomeCompleto;
 
     @Column(name = "idade", nullable = false)
@@ -27,13 +27,13 @@ public class FuncionarioModel {
     private GeneroEnum genero;
 
     @ManyToOne
-    @JoinColumn(name = "idSetor")
+    @JoinColumn(name = "idsetor")
     private SetorModel setor;
 
-    @Column(name = "salarioBase", nullable = false)
+    @Column(name = "salariobase", nullable = false)
     private double salarioBase;
 
     @ManyToOne
-    @JoinColumn(name = "idFarmacia")
+    @JoinColumn(name = "idfarmacia")
     private FarmaciaModel farmacia;
 }

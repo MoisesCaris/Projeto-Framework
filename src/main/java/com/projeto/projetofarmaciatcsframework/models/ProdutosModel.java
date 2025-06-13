@@ -16,19 +16,19 @@ public class ProdutosModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idProduto;
 
-    @Column(name = "nomeProduto", nullable = false)
+    @Column(name = "nomeproduto", nullable = false)
     private String nomeProduto;
 
-    @Column(name = "valorVenda", nullable = false)
+    @Column(name = "valorvenda", nullable = false)
     private double valorVenda;
 
-    @Column(name = "valorCusto", nullable = false)
+    @Column(name = "valorcusto", nullable = false)
     private double valorCusto;
 
     @Column(name = "quantidade", nullable = false)
     private int quantidade;
 
     @ManyToOne
-    @JoinColumn(name = "idFarmacia")
+    @JoinColumn(name = "idfarmacia")
     private FarmaciaModel farmacia;
 }

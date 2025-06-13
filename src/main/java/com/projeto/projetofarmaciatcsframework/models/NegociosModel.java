@@ -17,14 +17,14 @@ public class NegociosModel {
     private int idNegocio;
 
     @ManyToOne
-    @JoinColumn(name = "idCompra")
+    @JoinColumn(name = "idcompra")
     private CompraModel compra;
 
     @ManyToOne
-    @JoinColumn(name = "idVenda")
+    @JoinColumn(name = "idvenda")
     private VendaModel venda;
 
     @ManyToOne
-    @JoinColumn(name = "idFarmacia")
+    @JoinColumn(name = "idfarmacia")
     private FarmaciaModel farmacia;
 }
