@@ -1,1 +1,1 @@
-alter table usuarios add column farmaciaID int references Farmacia(idFarmacia);
+alter table usuarios add column farmaciaID int references Farmacia(idFarmacia) null;

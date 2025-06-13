@@ -27,6 +27,7 @@ public class UsuarioModel implements UserDetails {
     private UsuarioAcesso acesso;
 
     @ManyToOne
+    @JoinColumn(name = "farmaciaID", nullable = true)
     private FarmaciaModel farmaciaID;
 
     public UsuarioModel(String login, String senha, UsuarioAcesso acesso) {
