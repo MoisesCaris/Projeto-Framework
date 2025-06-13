@@ -14,6 +14,7 @@ public class SetorModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idsetor")
     private int idSetor;
 
     @Column(name = "nome", nullable = false)
