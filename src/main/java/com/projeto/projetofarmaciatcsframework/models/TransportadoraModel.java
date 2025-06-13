@@ -8,8 +8,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.io.Serializable;
 import java.util.List;
-import org.hibernate.annotations.JdbcTypeCode;
-import org.hibernate.type.SqlTypes;
 
 @Entity
 @Table(name = "Transportadora")
@@ -28,6 +26,6 @@ public class TransportadoraModel implements Serializable {
     @Size(max = 150, message = "Nome deve ter no máximo 150 caracteres")
     private String nome;
 
-    @OneToMany(mappedBy = "transportadora", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "transportadora", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<CoberturaTransportadoraModel> coberturas;
 }
