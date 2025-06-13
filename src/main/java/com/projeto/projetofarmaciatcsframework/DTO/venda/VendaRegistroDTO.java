@@ -1,6 +1,7 @@
 package com.projeto.projetofarmaciatcsframework.DTO.venda;
 
 import java.time.LocalDate;
+import java.util.Date;
 
-public record VendaRegistroDTO(LocalDate dataVenda, double totalVenda) {
+public record VendaRegistroDTO(Date dataVenda, double totalVenda) {
 }

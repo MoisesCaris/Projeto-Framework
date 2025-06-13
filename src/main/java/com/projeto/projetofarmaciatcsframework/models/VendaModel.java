@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 @Table(name = "Venda")
 @Entity(name = "venda")
@@ -24,7 +25,7 @@ public class VendaModel {
     private FuncionarioModel funcionario;
 
     @Column(name = "datavenda", nullable = false)
-    private LocalDate dataVenda;
+    private Date dataVenda;
 
     @Column(name = "totalvenda", nullable = true)
     private double totalVenda;
