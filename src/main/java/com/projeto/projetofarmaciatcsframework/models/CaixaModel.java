@@ -22,4 +22,5 @@ public class CaixaModel {
     @ManyToOne
     @JoinColumn(name = "idfarmacia")
     private FarmaciaModel farmacia;
+    
 }
