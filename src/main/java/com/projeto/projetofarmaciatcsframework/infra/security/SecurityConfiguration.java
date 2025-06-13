@@ -33,7 +33,9 @@ public class SecurityConfiguration {
                         .requestMatchers(HttpMethod.POST, "/produtos/registro").hasRole("FUNCIONARIO")
                         .requestMatchers(HttpMethod.POST, "/farmacia/registrar").hasRole("GERENTE")
                         .requestMatchers(HttpMethod.POST, "/funcionario/adicionar").hasRole("GERENTE")
+                        .requestMatchers(HttpMethod.DELETE, "/transportadoras/{id}").hasRole("GERENTE")
                         .requestMatchers(HttpMethod.POST, "/venda/vender").hasRole("FUNCIONARIO")
+                        .requestMatchers(HttpMethod.POST, "/compra/comprar").hasRole("FUNCIONARIO")
                         .anyRequest().authenticated())
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
