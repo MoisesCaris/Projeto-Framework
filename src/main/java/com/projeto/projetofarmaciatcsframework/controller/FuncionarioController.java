@@ -4,6 +4,7 @@ import com.projeto.projetofarmaciatcsframework.DTO.funcionario.RegistroFuncionar
 import com.projeto.projetofarmaciatcsframework.infra.security.AuthUtils;
 import com.projeto.projetofarmaciatcsframework.service.FuncionarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,6 +23,6 @@ public class FuncionarioController {
         Integer userId = AuthUtils.getCurrentUserId();
         Integer farmaciaID = AuthUtils.getCurrentUserFarmaciaId();
         funcionarioService.registrarFuncionario(data, userId, farmaciaID) ;
-        return ResponseEntity.ok().build();
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 }

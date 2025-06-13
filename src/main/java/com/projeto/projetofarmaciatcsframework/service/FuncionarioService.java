@@ -32,16 +32,16 @@ public class FuncionarioService {
 
     public void registrarFuncionario(RegistroFuncionarioDTO data, Integer userId,Integer farmaciaID) {
         FarmaciaModel farmaciaModel = farmaciaRepository.findById(farmaciaID).get();
+        var encryptedPassword = new BCryptPasswordEncoder().encode(data.login());
+        var user = new UsuarioModel(data.login(), encryptedPassword, data.usuarioAcesso());
         if (userRepository.findByLogin(data.login()) == null) {
-            var encryptedPassword = new BCryptPasswordEncoder().encode(data.login());
-            var user = new UsuarioModel(data.login(), encryptedPassword, data.usuarioAcesso());
             user.setFarmaciaID(farmaciaModel);
             this.userRepository.save(user);
         }else{
         }
         GeneroEnum generoEnum = GeneroEnum.valueOf(data.genero().toString());
         SetorModel setorModel = setorRepository.findById(data.setorID()).get();
-        FuncionarioModel funcionarioModel = mapper.adicionarFuncionario(data,farmaciaModel,setorModel,userId, generoEnum);
+        FuncionarioModel funcionarioModel = mapper.adicionarFuncionario(data,farmaciaModel,setorModel,user.getId(), generoEnum);
         this.funcionarioRepository.save(funcionarioModel);
     }
 }
