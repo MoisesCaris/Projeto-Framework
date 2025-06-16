@@ -1,4 +1,7 @@
 package com.projeto.projetofarmaciatcsframework.repository;
 
-public interface ComprasProdutoRepository {
+import com.projeto.projetofarmaciatcsframework.models.ComprasProdutoModel;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ComprasProdutoRepository extends JpaRepository<ComprasProdutoModel, Integer> {
 }
