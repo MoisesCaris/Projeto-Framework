@@ -15,14 +15,19 @@ public class CompraService {
 
     @Autowired
     private CompraRepository compraRepository;
+
     @Autowired
     private FuncionarioRepository funcionarioRepository;
+
     @Autowired
     private FarmaciaRepository farmaciaRepository;
+
     @Autowired
     private CompraMapper mapper;
+
     @Autowired
     private ProdutosRepository produtosRepository;
+
     @Autowired
     private ComprasProdutoRepository comprasProdutoRepository;
 
