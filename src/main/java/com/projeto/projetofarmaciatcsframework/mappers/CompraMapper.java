@@ -16,6 +16,8 @@ public interface CompraMapper {
     @Mapping(target = "farmacia", source = "farmaciaModel")
     CompraModel registroCompra(VendaRegistroDTO data, FarmaciaModel farmaciaModel, FuncionarioModel funcionarioModel);
 
+    @Mapping(target = "idCompra", source = "data.idCompra")
+    @Mapping(target = "idProduto", source = "data.idProduto")
     @Mapping(target = "compra", source = "compraModel")
     @Mapping(target = "produto", source = "produtosModel")
     @Mapping(target = "qtdCompraProduto", source = "data.qtdCompraProduto")

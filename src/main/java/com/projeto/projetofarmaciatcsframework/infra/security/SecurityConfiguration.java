@@ -36,6 +36,7 @@ public class SecurityConfiguration {
                         .requestMatchers(HttpMethod.DELETE, "/transportadoras/{id}").hasRole("GERENTE")
                         .requestMatchers(HttpMethod.POST, "/venda/vender").hasRole("FUNCIONARIO")
                         .requestMatchers(HttpMethod.POST, "/compra/comprar").hasRole("FUNCIONARIO")
+                            .requestMatchers(HttpMethod.POST, "/compra/adicionar").hasRole("FUNCIONARIO")
                         .anyRequest().authenticated())
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
