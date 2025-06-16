@@ -21,6 +21,6 @@ public interface CompraMapper {
     @Mapping(target = "compra", source = "compraModel")
     @Mapping(target = "produto", source = "produtosModel")
     @Mapping(target = "qtdCompraProduto", source = "data.qtdCompraProduto")
-    @Mapping(target = "valorCompraProduto", source = "data.valorCompraProduto")
+    @Mapping(target = "valorCompraProduto", ignore = true)
     ComprasProdutoModel registroProduto(CompraProdutoDTO data, CompraModel compraModel, ProdutosModel produtosModel);
 }

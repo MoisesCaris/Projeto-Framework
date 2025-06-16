@@ -7,6 +7,8 @@ import com.projeto.projetofarmaciatcsframework.models.*;
 import com.projeto.projetofarmaciatcsframework.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import java.util.Optional;
 
 @Service
 public class CompraService {
@@ -24,19 +26,38 @@ public class CompraService {
     @Autowired
     private ComprasProdutoRepository comprasProdutoRepository;
 
+    @Transactional
     public void registrarVenda(VendaRegistroDTO data, Integer userId, Integer farmaciaID) {
-        FuncionarioModel funcionarioModel = funcionarioRepository.findById(userId).orElseThrow();
-        FarmaciaModel farmaciaModel = farmaciaRepository.findById(farmaciaID).orElseThrow();
-        CompraModel compraModel = mapper.registroCompra(data,farmaciaModel, funcionarioModel);
+        FuncionarioModel funcionarioModel = funcionarioRepository.findById(userId).orElseThrow(() -> new RuntimeException("Funcionário não encontrado."));
+        FarmaciaModel farmaciaModel = farmaciaRepository.findById(farmaciaID).orElseThrow(() -> new RuntimeException("Farmácia não encontrada."));
+        CompraModel compraModel = mapper.registroCompra(data, farmaciaModel, funcionarioModel);
         this.compraRepository.save(compraModel);
     }
 
-    public void registrarProdutos(CompraProdutoDTO data){
-        CompraModel compraModel = compraRepository.findById(data.idCompra()).orElseThrow();
-        ProdutosModel produtoModel = produtosRepository.findById(data.idProduto()).orElseThrow();
-        produtoModel.setQuantidade(data.qtdCompraProduto());
+    @Transactional
+    public void registrarProdutos(CompraProdutoDTO data) {
+        CompraModel compraModel = compraRepository.findById(data.idCompra())
+                .orElseThrow(() -> new RuntimeException("Compra com ID " + data.idCompra() + " não encontrada."));
+        ProdutosModel produtoModel = produtosRepository.findById(data.idProduto())
+                .orElseThrow(() -> new RuntimeException("Produto com ID " + data.idProduto() + " não encontrado."));
+
+        produtoModel.setQuantidade(produtoModel.getQuantidade() + data.qtdCompraProduto());
         produtosRepository.save(produtoModel);
-        ComprasProdutoModel comprasProdutoModel = mapper.registroProduto(data,compraModel,produtoModel);
-        this.comprasProdutoRepository.save(comprasProdutoModel);
+
+        double valorDoItem = produtoModel.getValorCusto() * data.qtdCompraProduto();
+        compraModel.setTotalCompra(compraModel.getTotalCompra() + valorDoItem);
+        compraRepository.save(compraModel);
+
+        Optional<ComprasProdutoModel> itemExistenteOpt = comprasProdutoRepository.findByCompra_IdCompraAndProduto_IdProduto(data.idCompra(), data.idProduto());
+
+        if (itemExistenteOpt.isPresent()) {
+            ComprasProdutoModel itemExistente = itemExistenteOpt.get();
+            int novaQuantidade = itemExistente.getQtdCompraProduto() + data.qtdCompraProduto();
+            itemExistente.setQtdCompraProduto(novaQuantidade);
+            comprasProdutoRepository.save(itemExistente);
+        } else {
+            ComprasProdutoModel novoItem = mapper.registroProduto(data, compraModel, produtoModel);
+            this.comprasProdutoRepository.save(novoItem);
+        }
     }
 }
