@@ -10,7 +10,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "VendaProdutos")
+@Table(name = "vendaprodutos")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

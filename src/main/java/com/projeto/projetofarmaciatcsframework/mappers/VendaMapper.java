@@ -18,9 +18,9 @@ public interface VendaMapper {
 
     @Mapping(target = "idVenda", source = "data.idCompra")
     @Mapping(target = "idProduto", source = "data.idProduto")
-    @Mapping(target = "venda", source = "VendaModel")
+    @Mapping(target = "venda", source = "vendaModel")
     @Mapping(target = "produto", source = "produtosModel")
     @Mapping(target = "qtdVendaProduto", source = "data.qtdCompraProduto")
-    @Mapping(target = "valorVendaProduto", source = "data.valorCompraProduto")
+    @Mapping(target = "valorVendaProduto", ignore = true)
     VendaProdutosModel registroProduto(CompraProdutoDTO data, VendaModel vendaModel, ProdutosModel produtosModel);
 }

@@ -1,5 +1,6 @@
 package com.projeto.projetofarmaciatcsframework.controller;
 
+import com.projeto.projetofarmaciatcsframework.DTO.compra.CompraProdutoDTO;
 import com.projeto.projetofarmaciatcsframework.DTO.venda.VendaRegistroDTO;
 import com.projeto.projetofarmaciatcsframework.infra.security.AuthUtils;
 import com.projeto.projetofarmaciatcsframework.service.VendaService;
@@ -23,6 +24,12 @@ public class VendaController {
         Integer userId = AuthUtils.getCurrentUserId();
         Integer farmaciaID = AuthUtils.getCurrentUserFarmaciaId();
         vendaService.registrarVenda(data,userId,farmaciaID);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @PostMapping("/adicionar")
+    public ResponseEntity registroProduto(@RequestBody CompraProdutoDTO data) {
+        vendaService.registroProduto(data);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 }
