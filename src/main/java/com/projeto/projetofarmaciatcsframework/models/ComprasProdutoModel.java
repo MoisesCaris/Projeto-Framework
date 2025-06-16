@@ -16,14 +16,6 @@ import java.math.BigDecimal;
 @IdClass(CompraProdutosId.class)
 public class ComprasProdutoModel implements Serializable {
 
-    @Id
-    @Column(name = "idcompra")
-    private Integer idCompra;
-
-    @Id
-    @Column(name = "idproduto")
-    private Integer idProduto;
-
     @Column(name = "qtdcompraproduto", nullable = false)
     @Min(value = 1, message = "Quantidade deve ser maior que 0")
     private Integer qtdCompraProduto;
@@ -33,10 +25,12 @@ public class ComprasProdutoModel implements Serializable {
     private BigDecimal valorCompraProduto;
 
     @ManyToOne
+    @Id
     @JoinColumn(name = "idcompra", insertable = false, updatable = false)
     private CompraModel compra;
 
     @ManyToOne
+    @Id
     @JoinColumn(name = "idproduto", insertable = false, updatable = false)
     private ProdutosModel produto;
 }
