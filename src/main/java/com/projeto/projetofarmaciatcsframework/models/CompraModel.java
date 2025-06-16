@@ -16,6 +16,7 @@ public class CompraModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idcompra")
     private int idCompra;
 
     @ManyToOne

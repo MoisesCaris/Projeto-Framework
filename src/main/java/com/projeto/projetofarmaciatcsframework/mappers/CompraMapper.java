@@ -4,7 +4,6 @@ import com.projeto.projetofarmaciatcsframework.DTO.venda.VendaRegistroDTO;
 import com.projeto.projetofarmaciatcsframework.models.CompraModel;
 import com.projeto.projetofarmaciatcsframework.models.FarmaciaModel;
 import com.projeto.projetofarmaciatcsframework.models.FuncionarioModel;
-import com.projeto.projetofarmaciatcsframework.models.VendaModel;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
