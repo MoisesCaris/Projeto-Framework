@@ -34,6 +34,8 @@ public class CompraService {
     public void registrarProdutos(CompraProdutoDTO data){
         CompraModel compraModel = compraRepository.findById(data.idCompra()).orElseThrow();
         ProdutosModel produtoModel = produtosRepository.findById(data.idProduto()).orElseThrow();
+        produtoModel.setQuantidade(data.qtdCompraProduto());
+        produtosRepository.save(produtoModel);
         ComprasProdutoModel comprasProdutoModel = mapper.registroProduto(data,compraModel,produtoModel);
         this.comprasProdutoRepository.save(comprasProdutoModel);
     }
