@@ -1,6 +1,7 @@
 package com.projeto.projetofarmaciatcsframework.service;
 
 import com.projeto.projetofarmaciatcsframework.DTO.setor.RegistroSetorDTO;
+import com.projeto.projetofarmaciatcsframework.DTO.setor.SetorDetalhesDTO;
 import com.projeto.projetofarmaciatcsframework.mappers.SetorMapper;
 import com.projeto.projetofarmaciatcsframework.models.FarmaciaModel;
 import com.projeto.projetofarmaciatcsframework.models.SetorModel;
@@ -8,6 +9,9 @@ import com.projeto.projetofarmaciatcsframework.repository.FarmaciaRepository;
 import com.projeto.projetofarmaciatcsframework.repository.SetorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class SetorService {
@@ -25,5 +29,20 @@ public class SetorService {
         FarmaciaModel farmaciaModel = farmaciaRepository.findById(farmaciaID).get();
         SetorModel setorModel =  mapper.registroSetor(data, farmaciaModel);
         this.setorRepository.save(setorModel);
+    }
+
+    public List<SetorDetalhesDTO> listarTodos() {
+        return setorRepository.findAll()
+                .stream()
+                .map(setor -> new SetorDetalhesDTO(
+                        setor.getIdSetor(),
+                        setor.getNome(),
+                        setor.getValeAlimentacao(),
+                        setor.getValeRefeicao(),
+                        setor.getValeTransporte(),
+                        setor.getPlanoOdonto(),
+                        setor.getPlanoSaude()
+                ))
+                .collect(Collectors.toList());
     }
 }

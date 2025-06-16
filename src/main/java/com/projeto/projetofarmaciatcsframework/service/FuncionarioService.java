@@ -1,5 +1,6 @@
 package com.projeto.projetofarmaciatcsframework.service;
 
+import com.projeto.projetofarmaciatcsframework.DTO.funcionario.FuncionarioDetalhesDTO;
 import com.projeto.projetofarmaciatcsframework.DTO.funcionario.RegistroFuncionarioDTO;
 import com.projeto.projetofarmaciatcsframework.mappers.FuncionarioMapper;
 import com.projeto.projetofarmaciatcsframework.models.*;
@@ -11,6 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class FuncionarioService {
@@ -43,5 +47,23 @@ public class FuncionarioService {
         SetorModel setorModel = setorRepository.findById(data.setorID()).get();
         FuncionarioModel funcionarioModel = mapper.adicionarFuncionario(data,farmaciaModel,setorModel,user.getId(), generoEnum);
         this.funcionarioRepository.save(funcionarioModel);
+    }
+
+    public List<FuncionarioDetalhesDTO> listarTodos() {
+        return funcionarioRepository.findAll()
+                .stream()
+                .map(this::toFuncionarioDetalhesDTO)
+                .collect(Collectors.toList());
+    }
+
+    private FuncionarioDetalhesDTO toFuncionarioDetalhesDTO(FuncionarioModel funcionario) {
+        return new FuncionarioDetalhesDTO(
+                funcionario.getIdFuncionario(),
+                funcionario.getNomeCompleto(),
+                funcionario.getIdade(),
+                funcionario.getGenero() != null ? funcionario.getGenero().toString() : "Não informado",
+                funcionario.getSetor() != null ? funcionario.getSetor().getNome() : "Não definido",
+                funcionario.getFarmacia() != null ? funcionario.getFarmacia().getNome() : "Não definida"
+        );
     }
 }

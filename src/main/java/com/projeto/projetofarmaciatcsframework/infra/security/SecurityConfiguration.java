@@ -11,8 +11,14 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.DefaultSecurityFilterChain;
+import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.Arrays;
+import java.util.List;
 
 @Configuration
 @EnableWebSecurity
@@ -21,15 +27,23 @@ public class SecurityConfiguration {
     SecurityFilter securityFilter;
 
     @Bean
-    public DefaultSecurityFilterChain configure(HttpSecurity http) throws Exception {
+    public SecurityFilterChain configure(HttpSecurity http) throws Exception {
         return http
+                // 1. HABILITA a configuração de CORS definida no Bean abaixo
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
+                        // Suas regras existentes, sem alterações:
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
+
+                        .requestMatchers(HttpMethod.GET, "/produtos").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/setores").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/funcionarios").authenticated()
+
                         .requestMatchers(HttpMethod.POST, "/set/registrar").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/set/").hasRole("GERENTE")
+                        .requestMatchers(HttpMethod.POST, "/setores/registrar").hasRole("GERENTE")
                         .requestMatchers(HttpMethod.POST, "/produtos/registro").hasRole("FUNCIONARIO")
                         .requestMatchers(HttpMethod.POST, "/farmacia/registrar").hasRole("GERENTE")
                         .requestMatchers(HttpMethod.POST, "/funcionario/adicionar").hasRole("GERENTE")
@@ -43,7 +57,6 @@ public class SecurityConfiguration {
                 .build();
     }
 
-
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return  authenticationConfiguration.getAuthenticationManager();
@@ -52,5 +65,26 @@ public class SecurityConfiguration {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    // 2. BEAN que define as regras de CORS
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+
+        // Permite requisições de qualquer origem. Para produção, é mais seguro especificar a URL do seu frontend.
+        configuration.setAllowedOrigins(List.of("*"));
+
+        // Libera os métodos HTTP que seu frontend usará
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+
+        // Permite todos os cabeçalhos nas requisições (incluindo 'Authorization')
+        configuration.setAllowedHeaders(List.of("*"));
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        // Aplica esta configuração para todos os endpoints da API
+        source.registerCorsConfiguration("/**", configuration);
+
+        return source;
     }
 }

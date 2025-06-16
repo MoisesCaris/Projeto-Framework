@@ -1,6 +1,7 @@
 package com.projeto.projetofarmaciatcsframework.controller;
 
 import com.projeto.projetofarmaciatcsframework.DTO.setor.RegistroSetorDTO;
+import com.projeto.projetofarmaciatcsframework.DTO.setor.SetorDetalhesDTO;
 import com.projeto.projetofarmaciatcsframework.service.SetorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.projeto.projetofarmaciatcsframework.infra.security.AuthUtils;
@@ -8,8 +9,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/set")
+@RequestMapping("/setores")
 public class SetorController {
 
     @Autowired
@@ -21,5 +24,10 @@ public class SetorController {
         setorService.registroSetor(data, farmaciaID);
         System.out.println("Registrar Setor");
         return ResponseEntity.status(HttpStatus.CREATED).body("Setor Criado com Sucesso");
+    }
+    @GetMapping
+    public ResponseEntity<List<SetorDetalhesDTO>> listarSetores() {
+        List<SetorDetalhesDTO> setores = setorService.listarTodos();
+        return ResponseEntity.ok(setores);
     }
 }
