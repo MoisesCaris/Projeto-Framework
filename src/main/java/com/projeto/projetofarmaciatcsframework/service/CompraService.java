@@ -32,11 +32,12 @@ public class CompraService {
     private ComprasProdutoRepository comprasProdutoRepository;
 
     @Transactional
-    public void registrarVenda(VendaRegistroDTO data, Integer userId, Integer farmaciaID) {
+    public int registrarVenda(VendaRegistroDTO data, Integer userId, Integer farmaciaID) {
         FuncionarioModel funcionarioModel = funcionarioRepository.findById(userId).orElseThrow(() -> new RuntimeException("Funcionário não encontrado."));
         FarmaciaModel farmaciaModel = farmaciaRepository.findById(farmaciaID).orElseThrow(() -> new RuntimeException("Farmácia não encontrada."));
         CompraModel compraModel = mapper.registroCompra(data, farmaciaModel, funcionarioModel);
         this.compraRepository.save(compraModel);
+        return compraModel.getIdCompra();
     }
 
     @Transactional

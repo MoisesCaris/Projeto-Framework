@@ -24,8 +24,7 @@ public class CompraController {
     public ResponseEntity criarCompra(@RequestBody VendaRegistroDTO data) {
         Integer userId = AuthUtils.getCurrentUserId();
         Integer farmaciaID = AuthUtils.getCurrentUserFarmaciaId();
-        compraService.registrarVenda(data,userId,farmaciaID);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+        return ResponseEntity.status(HttpStatus.CREATED).body(compraService.registrarVenda(data,userId,farmaciaID));
     }
 
     @PostMapping("/adicionar")
