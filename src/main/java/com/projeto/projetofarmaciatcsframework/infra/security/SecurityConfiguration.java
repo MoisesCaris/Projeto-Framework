@@ -37,11 +37,9 @@ public class SecurityConfiguration {
                         // Suas regras existentes, sem alterações:
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
-
                         .requestMatchers(HttpMethod.GET, "/produtos").authenticated()
                         .requestMatchers(HttpMethod.GET, "/setores").authenticated()
                         .requestMatchers(HttpMethod.GET, "/funcionarios").authenticated()
-
                         .requestMatchers(HttpMethod.POST, "/set/registrar").permitAll()
                         .requestMatchers(HttpMethod.POST, "/setores/registrar").hasRole("GERENTE")
                         .requestMatchers(HttpMethod.POST, "/produtos/registro").hasRole("FUNCIONARIO")
