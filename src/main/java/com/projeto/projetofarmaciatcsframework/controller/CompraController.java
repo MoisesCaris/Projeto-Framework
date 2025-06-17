@@ -35,6 +35,7 @@ public class CompraController {
 
     @GetMapping("/listar")
     public ResponseEntity<List<CompraListagemDTO>> listarCompras() {
-        return ResponseEntity.ok(compraService.listarCompras());
+        Integer farmaciaID = AuthUtils.getCurrentUserFarmaciaId();
+        return ResponseEntity.ok(compraService.listarCompras(farmaciaID));
     }
 }

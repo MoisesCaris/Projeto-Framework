@@ -75,14 +75,8 @@ public class VendaService {
         }
     }
 
-    public List<VendaListagemDTO> listarVendas() {
-        return vendaRepository.findAll().stream().map(venda ->
-                new VendaListagemDTO(
-                        venda.getIdVenda(),
-                        venda.getFuncionario().getNomeCompleto(),
-                        venda.getDataVenda(),
-                        venda.getTotalVenda()
-                )
-        ).collect(Collectors.toList());
+    public List<VendaListagemDTO> listarVendas(Integer farmaciaID) {
+        FarmaciaModel farmaciaModel = farmaciaRepository.findById(farmaciaID).get();
+        return vendaRepository.toDTO(farmaciaModel);
     }
 }

@@ -71,14 +71,8 @@ public class CompraService {
         }
     }
 
-    public List<CompraListagemDTO> listarCompras() {
-        return compraRepository.findAll().stream().map(compra ->
-                new CompraListagemDTO(
-                        compra.getIdCompra(),
-                        compra.getFuncionario().getNomeCompleto(),
-                        compra.getDataCompra(),
-                        compra.getTotalCompra()
-                )
-        ).collect(Collectors.toList());
+    public List<CompraListagemDTO> listarCompras(Integer farmaciaID) {
+        FarmaciaModel farmaciaModel = farmaciaRepository.findById(farmaciaID).get();
+        return compraRepository.toDTO(farmaciaModel);
     }
 }

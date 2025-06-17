@@ -35,6 +35,7 @@ public class VendaController {
 
     @GetMapping("/listar")
     public ResponseEntity<List<VendaListagemDTO>> listarVendas() {
-        return ResponseEntity.ok(vendaService.listarVendas());
+        Integer farmaciaID = AuthUtils.getCurrentUserFarmaciaId();
+        return ResponseEntity.ok(vendaService.listarVendas(farmaciaID));
     }
 }

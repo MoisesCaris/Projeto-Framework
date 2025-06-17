@@ -17,7 +17,7 @@ public class TransportadoraController {
     @Autowired
     private TransportadoraService transportadoraService;
 
-    @GetMapping
+    @GetMapping("/listar")
     public ResponseEntity<List<TransportadoraDetalhesDTO>> listarTodas() {
         List<TransportadoraDetalhesDTO> transportadoras = transportadoraService.listarTodasComCobertura();
         return ResponseEntity.ok(transportadoras);
