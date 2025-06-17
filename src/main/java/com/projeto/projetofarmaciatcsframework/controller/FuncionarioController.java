@@ -31,4 +31,11 @@ public class FuncionarioController {
         List<FuncionarioDetalhesDTO> funcionarios = funcionarioService.listarTodos();
         return ResponseEntity.ok(funcionarios);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> excluir(@PathVariable Integer id) {
+        funcionarioService.excluirFuncionario(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }

@@ -8,6 +8,7 @@ import com.projeto.projetofarmaciatcsframework.models.SetorModel;
 import com.projeto.projetofarmaciatcsframework.repository.FarmaciaRepository;
 import com.projeto.projetofarmaciatcsframework.repository.SetorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -44,5 +45,12 @@ public class SetorService {
                         setor.getPlanoSaude()
                 ))
                 .collect(Collectors.toList());
+    }
+
+    public void excluirSetor(Integer id) {
+        if (!setorRepository.existsById(id)) {
+            throw new EmptyResultDataAccessException("Nenhum setor encontrado com o ID: " + id, 1);
+        }
+        setorRepository.deleteById(id);
     }
 }

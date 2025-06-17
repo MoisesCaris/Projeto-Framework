@@ -30,4 +30,10 @@ public class SetorController {
         List<SetorDetalhesDTO> setores = setorService.listarTodos();
         return ResponseEntity.ok(setores);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> excluir(@PathVariable Integer id) {
+        setorService.excluirSetor(id);
+        return ResponseEntity.noContent().build();
+    }
 }

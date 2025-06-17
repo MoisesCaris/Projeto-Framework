@@ -9,6 +9,7 @@ import com.projeto.projetofarmaciatcsframework.repository.FuncionarioRepository;
 import com.projeto.projetofarmaciatcsframework.repository.SetorRepository;
 import com.projeto.projetofarmaciatcsframework.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -65,5 +66,12 @@ public class FuncionarioService {
                 funcionario.getSetor() != null ? funcionario.getSetor().getNome() : "Não definido",
                 funcionario.getFarmacia() != null ? funcionario.getFarmacia().getNome() : "Não definida"
         );
+    }
+
+    public void excluirFuncionario(Integer id) {
+        if (!funcionarioRepository.existsById(id)) {
+            throw new EmptyResultDataAccessException("Nenhum funcionário encontrado com o ID: " + id, 1);
+        }
+        funcionarioRepository.deleteById(id);
     }
 }

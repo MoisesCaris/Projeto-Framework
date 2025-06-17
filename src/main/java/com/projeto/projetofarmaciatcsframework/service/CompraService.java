@@ -1,5 +1,6 @@
 package com.projeto.projetofarmaciatcsframework.service;
 
+import com.projeto.projetofarmaciatcsframework.DTO.compra.CompraListagemDTO;
 import com.projeto.projetofarmaciatcsframework.DTO.compra.CompraProdutoDTO;
 import com.projeto.projetofarmaciatcsframework.DTO.venda.VendaRegistroDTO;
 import com.projeto.projetofarmaciatcsframework.mappers.CompraMapper;
@@ -8,7 +9,10 @@ import com.projeto.projetofarmaciatcsframework.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class CompraService {
@@ -65,5 +69,16 @@ public class CompraService {
             ComprasProdutoModel novoItem = mapper.registroProduto(data, compraModel, produtoModel);
             this.comprasProdutoRepository.save(novoItem);
         }
+    }
+
+    public List<CompraListagemDTO> listarCompras() {
+        return compraRepository.findAll().stream().map(compra ->
+                new CompraListagemDTO(
+                        compra.getIdCompra(),
+                        compra.getFuncionario().getNomeCompleto(),
+                        compra.getDataCompra(),
+                        compra.getTotalCompra()
+                )
+        ).collect(Collectors.toList());
     }
 }
