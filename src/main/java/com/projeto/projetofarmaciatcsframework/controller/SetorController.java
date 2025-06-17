@@ -25,9 +25,10 @@ public class SetorController {
         System.out.println("Registrar Setor");
         return ResponseEntity.status(HttpStatus.CREATED).body("Setor Criado com Sucesso");
     }
-    @GetMapping
+    @GetMapping("/listar")
     public ResponseEntity<List<SetorDetalhesDTO>> listarSetores() {
-        List<SetorDetalhesDTO> setores = setorService.listarTodos();
+        Integer farmaciaID = AuthUtils.getCurrentUserFarmaciaId();
+        List<SetorDetalhesDTO> setores = setorService.listarTodos(farmaciaID);
         return ResponseEntity.ok(setores);
     }
 

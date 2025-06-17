@@ -32,19 +32,9 @@ public class SetorService {
         this.setorRepository.save(setorModel);
     }
 
-    public List<SetorDetalhesDTO> listarTodos() {
-        return setorRepository.findAll()
-                .stream()
-                .map(setor -> new SetorDetalhesDTO(
-                        setor.getIdSetor(),
-                        setor.getNome(),
-                        setor.getValeAlimentacao(),
-                        setor.getValeRefeicao(),
-                        setor.getValeTransporte(),
-                        setor.getPlanoOdonto(),
-                        setor.getPlanoSaude()
-                ))
-                .collect(Collectors.toList());
+    public List<SetorDetalhesDTO> listarTodos(Integer farmaciaID) {
+        FarmaciaModel farmaciaModel = farmaciaRepository.findById(farmaciaID).get();
+        return setorRepository.toDTO(farmaciaModel);
     }
 
     public void excluirSetor(Integer id) {
