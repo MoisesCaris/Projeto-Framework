@@ -41,6 +41,8 @@ public class SecurityConfiguration {
                         .requestMatchers(HttpMethod.GET, "/compra/listar").authenticated()
                         .requestMatchers(HttpMethod.GET, "/transportadora/listar").authenticated()
                         .requestMatchers(HttpMethod.POST, "/setores/registrar").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/funcionario/listar").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/produtos/listar").permitAll()
                         .requestMatchers(HttpMethod.POST, "/produtos/registro").hasRole("FUNCIONARIO")
                         .requestMatchers(HttpMethod.POST, "/farmacia/registrar").hasRole("GERENTE")
                         .requestMatchers(HttpMethod.POST, "/funcionario/adicionar").authenticated()

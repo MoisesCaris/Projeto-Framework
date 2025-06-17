@@ -31,19 +31,8 @@ public class ProdutosService {
         this.produtosRepository.save(produtos);
     }
 
-    public List<ProdutoDetalhesDTO> listarTodos() {
-        // 1. Busca todas as entidades do banco
-        List<ProdutosModel> produtos = produtosRepository.findAll();
-
-        // 2. Converte (mapeia) cada entidade para o seu DTO correspondente
-        return produtos.stream()
-                .map(produto -> new ProdutoDetalhesDTO(
-                        produto.getIdProduto(),
-                        produto.getNomeProduto(),
-                        produto.getValorVenda(),
-                        produto.getValorCusto(),
-                        produto.getQuantidade()
-                ))
-                .collect(Collectors.toList()); // Coleta os resultados em uma lista
+    public List<ProdutoDetalhesDTO> listarTodos(Integer farmaciaID) {
+        FarmaciaModel farmaciaModel = farmaciaRepository.findById(farmaciaID).get();
+        return produtosRepository.toDTO(farmaciaModel);
     }
 }

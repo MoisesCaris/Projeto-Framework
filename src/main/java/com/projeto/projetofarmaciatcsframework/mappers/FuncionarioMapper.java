@@ -1,6 +1,7 @@
 package com.projeto.projetofarmaciatcsframework.mappers;
 
 import com.projeto.projetofarmaciatcsframework.DTO.auth.RegisterDTO;
+import com.projeto.projetofarmaciatcsframework.DTO.funcionario.FuncionarioDetalhesDTO;
 import com.projeto.projetofarmaciatcsframework.models.FuncionarioModel;
 import com.projeto.projetofarmaciatcsframework.DTO.funcionario.RegistroFuncionarioDTO;
 import com.projeto.projetofarmaciatcsframework.models.FarmaciaModel;

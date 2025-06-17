@@ -26,9 +26,10 @@ public class FuncionarioController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @GetMapping
+    @GetMapping("/listar")
     public ResponseEntity<List<FuncionarioDetalhesDTO>> listarFuncionarios() {
-        List<FuncionarioDetalhesDTO> funcionarios = funcionarioService.listarTodos();
+        Integer farmaciaID = AuthUtils.getCurrentUserFarmaciaId();
+        List<FuncionarioDetalhesDTO> funcionarios = funcionarioService.listarTodos(farmaciaID);
         return ResponseEntity.ok(funcionarios);
     }
 

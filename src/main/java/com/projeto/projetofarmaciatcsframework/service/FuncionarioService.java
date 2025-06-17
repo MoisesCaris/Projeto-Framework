@@ -57,22 +57,9 @@ public class FuncionarioService {
         this.funcionarioRepository.save(funcionarioModel);
     }
 
-    public List<FuncionarioDetalhesDTO> listarTodos() {
-        return funcionarioRepository.findAll()
-                .stream()
-                .map(this::toFuncionarioDetalhesDTO)
-                .collect(Collectors.toList());
-    }
-
-    private FuncionarioDetalhesDTO toFuncionarioDetalhesDTO(FuncionarioModel funcionario) {
-        return new FuncionarioDetalhesDTO(
-                funcionario.getIdFuncionario(),
-                funcionario.getNomeCompleto(),
-                funcionario.getIdade(),
-                funcionario.getGenero() != null ? funcionario.getGenero().toString() : "Não informado",
-                funcionario.getSetor() != null ? funcionario.getSetor().getNome() : "Não definido",
-                funcionario.getFarmacia() != null ? funcionario.getFarmacia().getNome() : "Não definida"
-        );
+    public List<FuncionarioDetalhesDTO> listarTodos(Integer farmaciaID) {
+        FarmaciaModel farmaciaModel = farmaciaRepository.findById(farmaciaID).get();
+        return funcionarioRepository.findByFarmacia(farmaciaModel);
     }
 
     public void excluirFuncionario(Integer id) {

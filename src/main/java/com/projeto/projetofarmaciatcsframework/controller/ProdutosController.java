@@ -25,9 +25,10 @@ public class ProdutosController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @GetMapping
+    @GetMapping("/listar")
     public ResponseEntity<List<ProdutoDetalhesDTO>> listar() {
-        List<ProdutoDetalhesDTO> listaDeProdutos = produtosService.listarTodos();
+        Integer farmaciaID = AuthUtils.getCurrentUserFarmaciaId();
+        List<ProdutoDetalhesDTO> listaDeProdutos = produtosService.listarTodos(farmaciaID);
         return ResponseEntity.ok(listaDeProdutos);
     }
 }
