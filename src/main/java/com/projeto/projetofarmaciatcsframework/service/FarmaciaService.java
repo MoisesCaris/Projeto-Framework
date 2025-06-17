@@ -1,5 +1,6 @@
 package com.projeto.projetofarmaciatcsframework.service;
 
+import com.projeto.projetofarmaciatcsframework.DTO.auth.RegisterDTO;
 import com.projeto.projetofarmaciatcsframework.DTO.farmacia.FarmaciaRegistroDTO;
 import com.projeto.projetofarmaciatcsframework.mappers.FarmaciaMapper;
 import com.projeto.projetofarmaciatcsframework.models.FarmaciaModel;
@@ -28,5 +29,12 @@ public class FarmaciaService {
         FarmaciaModel farmaciaModel = mapper.registroFarmacia(data);
         this.farmaciaRepository.save(farmaciaModel);
         usuarioService.setID(userId, farmaciaModel);
+    }
+
+    public FarmaciaModel registrarFarmacia2(RegisterDTO data, Integer userId) {
+        FarmaciaModel farmaciaModel = mapper.registroFarmacia2(data);
+        this.farmaciaRepository.save(farmaciaModel);
+        usuarioService.setID(userId, farmaciaModel);
+        return farmaciaModel;
     }
 }

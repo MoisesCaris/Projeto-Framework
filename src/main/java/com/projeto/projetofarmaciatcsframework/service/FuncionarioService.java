@@ -1,5 +1,7 @@
 package com.projeto.projetofarmaciatcsframework.service;
 
+import com.projeto.projetofarmaciatcsframework.DTO.auth.AuthenticationDTO;
+import com.projeto.projetofarmaciatcsframework.DTO.auth.RegisterDTO;
 import com.projeto.projetofarmaciatcsframework.DTO.funcionario.FuncionarioDetalhesDTO;
 import com.projeto.projetofarmaciatcsframework.DTO.funcionario.RegistroFuncionarioDTO;
 import com.projeto.projetofarmaciatcsframework.mappers.FuncionarioMapper;
@@ -47,6 +49,11 @@ public class FuncionarioService {
         GeneroEnum generoEnum = GeneroEnum.valueOf(data.genero().toString());
         SetorModel setorModel = setorRepository.findById(data.setorID()).get();
         FuncionarioModel funcionarioModel = mapper.adicionarFuncionario(data,farmaciaModel,setorModel,user.getId(), generoEnum);
+        this.funcionarioRepository.save(funcionarioModel);
+    }
+    public void registro2Funcionario(RegisterDTO data, Integer userID, FarmaciaModel farmaciaModel) {
+        GeneroEnum generoEnum = GeneroEnum.valueOf(data.genero().toString());
+        FuncionarioModel funcionarioModel = mapper.adicionarFuncionario2(data,userID, generoEnum, farmaciaModel);
         this.funcionarioRepository.save(funcionarioModel);
     }
 

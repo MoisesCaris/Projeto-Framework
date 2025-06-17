@@ -35,13 +35,11 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
-
                         .requestMatchers(HttpMethod.GET, "/produtos").authenticated()
                         .requestMatchers(HttpMethod.GET, "/setores").authenticated()
                         .requestMatchers(HttpMethod.GET, "/funcionarios").authenticated()
                         .requestMatchers(HttpMethod.GET, "/compra/listar").authenticated()
                         .requestMatchers(HttpMethod.GET, "/transportadora/listar").authenticated()
-
                         .requestMatchers(HttpMethod.POST, "/setores/registrar").permitAll()
                         .requestMatchers(HttpMethod.POST, "/produtos/registro").hasRole("FUNCIONARIO")
                         .requestMatchers(HttpMethod.POST, "/farmacia/registrar").hasRole("GERENTE")
