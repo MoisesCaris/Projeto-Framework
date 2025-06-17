@@ -22,4 +22,7 @@ public class FarmaciaModel {
 
     @Column(name = "cnpj", nullable = false, unique = true)
     private String cnpj;
+
+    @Column(name = "caixainicial")
+    private double caixaInicial;
 }

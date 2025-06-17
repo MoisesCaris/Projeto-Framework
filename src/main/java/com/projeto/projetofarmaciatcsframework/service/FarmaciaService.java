@@ -1,6 +1,7 @@
 package com.projeto.projetofarmaciatcsframework.service;
 
 import com.projeto.projetofarmaciatcsframework.DTO.auth.RegisterDTO;
+import com.projeto.projetofarmaciatcsframework.DTO.farmacia.FarmaciaCaixaDTO;
 import com.projeto.projetofarmaciatcsframework.DTO.farmacia.FarmaciaRegistroDTO;
 import com.projeto.projetofarmaciatcsframework.mappers.FarmaciaMapper;
 import com.projeto.projetofarmaciatcsframework.models.FarmaciaModel;
@@ -36,5 +37,9 @@ public class FarmaciaService {
         this.farmaciaRepository.save(farmaciaModel);
         usuarioService.setID(userId, farmaciaModel);
         return farmaciaModel;
+    }
+
+    public FarmaciaCaixaDTO calcularCaixa(Integer farmaciaId) {
+        return farmaciaRepository.findSaldo(farmaciaId);
     }
 }
