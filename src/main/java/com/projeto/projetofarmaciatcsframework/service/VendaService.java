@@ -58,7 +58,7 @@ public class VendaService {
         produtoModel.setQuantidade(produtoModel.getQuantidade() - data.qtdVendaProduto());
         produtosRepository.save(produtoModel);
 
-        double valorDoItem = produtoModel.getValorCusto() * data.qtdVendaProduto();
+        double valorDoItem = produtoModel.getValorVenda() * data.qtdVendaProduto();
         vendaModel.setTotalVenda(vendaModel.getTotalVenda() + valorDoItem);
         vendaRepository.save(vendaModel);
 
