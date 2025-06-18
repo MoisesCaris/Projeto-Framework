@@ -31,4 +31,10 @@ public class ProdutosController {
         List<ProdutoDetalhesDTO> listaDeProdutos = produtosService.listarTodos(farmaciaID);
         return ResponseEntity.ok(listaDeProdutos);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> excluir(@PathVariable Integer id) {
+        produtosService.excluirProduto(id);
+        return ResponseEntity.noContent().build();
+    }
 }

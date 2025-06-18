@@ -8,6 +8,7 @@ import com.projeto.projetofarmaciatcsframework.models.ProdutosModel;
 import com.projeto.projetofarmaciatcsframework.repository.FarmaciaRepository;
 import com.projeto.projetofarmaciatcsframework.repository.ProdutosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -34,5 +35,12 @@ public class ProdutosService {
     public List<ProdutoDetalhesDTO> listarTodos(Integer farmaciaID) {
         FarmaciaModel farmaciaModel = farmaciaRepository.findById(farmaciaID).get();
         return produtosRepository.toDTO(farmaciaModel);
+    }
+
+    public void excluirProduto(Integer id) {
+        if (!produtosRepository.existsById(id)) {
+            throw new EmptyResultDataAccessException("Nenhum produto encontrado com o ID: " + id, 1);
+        }
+        produtosRepository.deleteById(id);
     }
 }
