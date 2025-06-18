@@ -28,4 +28,16 @@ public class FarmaciaController {
         Integer farmaciaID = AuthUtils.getCurrentUserFarmaciaId();
         return ResponseEntity.ok(farmaciaService.calcularCaixa(farmaciaID));
     }
+
+    @GetMapping("/mensal")
+    public ResponseEntity mensal(){
+        Integer farmaciaID = AuthUtils.getCurrentUserFarmaciaId();
+        return ResponseEntity.ok(farmaciaService.calcularLucroMensal(farmaciaID));
+    }
+
+    @GetMapping("/anual")
+    public ResponseEntity anual(){
+        Integer farmaciaID = AuthUtils.getCurrentUserFarmaciaId();
+        return ResponseEntity.ok(farmaciaService.calcularLucroAnual(farmaciaID));
+    }
 }
