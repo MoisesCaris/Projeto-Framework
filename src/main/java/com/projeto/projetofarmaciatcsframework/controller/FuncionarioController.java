@@ -1,5 +1,6 @@
 package com.projeto.projetofarmaciatcsframework.controller;
 
+import com.projeto.projetofarmaciatcsframework.DTO.funcionario.FuncionarioAtualizarDTO;
 import com.projeto.projetofarmaciatcsframework.DTO.funcionario.FuncionarioDetalhesDTO;
 import com.projeto.projetofarmaciatcsframework.DTO.funcionario.RegistroFuncionarioDTO;
 import com.projeto.projetofarmaciatcsframework.infra.security.AuthUtils;
@@ -39,4 +40,15 @@ public class FuncionarioController {
         return ResponseEntity.noContent().build();
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<FuncionarioDetalhesDTO> buscarFuncionarioPorId(@PathVariable Integer id) {
+        return ResponseEntity.ok(funcionarioService.listarFuncionario(id));
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity atualizar(@PathVariable Integer id, @RequestBody FuncionarioAtualizarDTO data) {
+        Integer farmaciaID = AuthUtils.getCurrentUserFarmaciaId();
+        funcionarioService.atualizarFuncionario(id, data, farmaciaID);
+        return ResponseEntity.ok("Funcionario atualizado com sucesso!");
+    }
 }

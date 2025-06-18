@@ -1,6 +1,7 @@
 package com.projeto.projetofarmaciatcsframework.mappers;
 
 import com.projeto.projetofarmaciatcsframework.DTO.auth.RegisterDTO;
+import com.projeto.projetofarmaciatcsframework.DTO.funcionario.FuncionarioAtualizarDTO;
 import com.projeto.projetofarmaciatcsframework.DTO.funcionario.FuncionarioDetalhesDTO;
 import com.projeto.projetofarmaciatcsframework.models.FuncionarioModel;
 import com.projeto.projetofarmaciatcsframework.DTO.funcionario.RegistroFuncionarioDTO;
@@ -30,4 +31,13 @@ public interface FuncionarioMapper {
     @Mapping(target = "farmacia", source = "farmaciaModel")
     @Mapping(target = "setor", ignore = true)
     FuncionarioModel adicionarFuncionario2(RegisterDTO data, Integer userId, GeneroEnum generoEnum, FarmaciaModel farmaciaModel);
+
+    @Mapping(target = "idFuncionario", source = "id")
+    @Mapping(target = "nomeCompleto", source = "data.nomeFuncionario")
+    @Mapping(target = "idade", source = "data.idade")
+    @Mapping(target = "genero", source = "generoEnum")
+    @Mapping(target = "salarioBase", source = "data.salarioBase")
+    @Mapping(target = "farmacia", source = "farmaciaModel")
+    @Mapping(target = "setor", source = "setorModel")
+    FuncionarioModel atualizarFuncionario(FuncionarioAtualizarDTO data, FuncionarioModel funcionarioModel, GeneroEnum generoEnum, Integer id, FarmaciaModel farmaciaModel, SetorModel setorModel);
 }

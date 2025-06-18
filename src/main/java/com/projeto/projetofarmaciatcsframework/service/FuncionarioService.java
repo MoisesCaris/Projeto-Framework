@@ -2,6 +2,7 @@ package com.projeto.projetofarmaciatcsframework.service;
 
 import com.projeto.projetofarmaciatcsframework.DTO.auth.AuthenticationDTO;
 import com.projeto.projetofarmaciatcsframework.DTO.auth.RegisterDTO;
+import com.projeto.projetofarmaciatcsframework.DTO.funcionario.FuncionarioAtualizarDTO;
 import com.projeto.projetofarmaciatcsframework.DTO.funcionario.FuncionarioDetalhesDTO;
 import com.projeto.projetofarmaciatcsframework.DTO.funcionario.RegistroFuncionarioDTO;
 import com.projeto.projetofarmaciatcsframework.mappers.FuncionarioMapper;
@@ -67,5 +68,18 @@ public class FuncionarioService {
             throw new EmptyResultDataAccessException("Nenhum funcionário encontrado com o ID: " + id, 1);
         }
         funcionarioRepository.deleteById(id);
+    }
+
+    public FuncionarioDetalhesDTO listarFuncionario(Integer id) {
+        return funcionarioRepository.findByIdFuncionario(id);
+    }
+
+    public void atualizarFuncionario(Integer id, FuncionarioAtualizarDTO data, Integer farmaciaID) {
+        GeneroEnum generoEnum = GeneroEnum.valueOf(data.genero().toString());
+        FarmaciaModel farmaciaModel = farmaciaRepository.findById(farmaciaID).get();
+        SetorModel setorModel = setorRepository.findById(data.setorID()).get();
+        FuncionarioModel funcionarioModel = funcionarioRepository.findById(id).get();
+        funcionarioModel = mapper.atualizarFuncionario(data, funcionarioModel, generoEnum, id, farmaciaModel , setorModel);
+        funcionarioRepository.save(funcionarioModel);
     }
 }

@@ -10,10 +10,17 @@ import java.util.List;
 
 public interface FuncionarioRepository extends JpaRepository<FuncionarioModel, Integer> {
 
-    @Query("select new com.projeto.projetofarmaciatcsframework.DTO.funcionario.FuncionarioDetalhesDTO(f.idFuncionario,f.nomeCompleto, f.idade, f.genero, s.nome, fa.nome) "+
+    @Query("select new com.projeto.projetofarmaciatcsframework.DTO.funcionario.FuncionarioDetalhesDTO(f.idFuncionario,f.nomeCompleto, f.idade, f.salarioBase, f.genero, s.nome, fa.nome) "+
     "from funcionario f "+
     "join f.farmacia fa "+
     "join f.setor s "+
     "where f.farmacia = :farmacia ")
     List<FuncionarioDetalhesDTO> findByFarmacia(FarmaciaModel farmacia);
+
+    @Query("select new com.projeto.projetofarmaciatcsframework.DTO.funcionario.FuncionarioDetalhesDTO(f.idFuncionario,f.nomeCompleto, f.idade, f.salarioBase, f.genero, s.nome, fa.nome) "+
+            "from funcionario f "+
+            "join f.farmacia fa "+
+            "join f.setor s "+
+            "where f.idFuncionario = :id")
+    FuncionarioDetalhesDTO findByIdFuncionario(Integer id);
 }

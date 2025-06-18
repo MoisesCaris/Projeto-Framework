@@ -6,6 +6,7 @@ public record FuncionarioDetalhesDTO(
         Integer id,
         String nomeCompleto,
         int idade,
+        double salario,
         GeneroEnum genero,
         String nomeSetor,
         String nomeFarmacia
