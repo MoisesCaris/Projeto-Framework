@@ -59,7 +59,7 @@ public class SecurityConfiguration {
                         .requestMatchers(HttpMethod.GET, "/farmacia/caixa").hasRole("FUNCIONARIO")
                         .requestMatchers(HttpMethod.GET, "/farmacia/anual").hasRole("FUNCIONARIO")
                         .requestMatchers(HttpMethod.GET, "/farmacia/mensal").hasRole("FUNCIONARIO")
-                        .requestMatchers(HttpMethod.PATCH, "/funcionario/{id}").hasRole("GERENTE")
+                        .requestMatchers(HttpMethod.PUT, "/funcionario/{id}").hasRole("GERENTE")
                         .requestMatchers(HttpMethod.GET, "/funcionario/{id}").hasRole("FUNCIONARIO")
                         .anyRequest().authenticated())
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)

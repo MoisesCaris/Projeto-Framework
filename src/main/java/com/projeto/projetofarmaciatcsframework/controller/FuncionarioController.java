@@ -45,7 +45,7 @@ public class FuncionarioController {
         return ResponseEntity.ok(funcionarioService.listarFuncionario(id));
     }
 
-    @PatchMapping("/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity atualizar(@PathVariable Integer id, @RequestBody FuncionarioAtualizarDTO data) {
         Integer farmaciaID = AuthUtils.getCurrentUserFarmaciaId();
         funcionarioService.atualizarFuncionario(id, data, farmaciaID);
